@@ -13,6 +13,14 @@ BOT_NAME = 'quotesbot'
 
 SPIDER_MODULES = ['quotesbot.spiders']
 NEWSPIDER_MODULE = 'quotesbot.spiders'
+CONNECTION_STRING= "{drivername}://{user}:{passwd}@{host}:{port}/{db_name}?charset=utf8".format(
+drivername="mysql+pymysql",
+user="",
+passwd="",
+host="localhost",
+port="3306",
+db_name="jobs_toscrape",
+)
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -64,9 +72,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'quotesbot.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'quotesbot.pipelines.ScrapySpiderPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
